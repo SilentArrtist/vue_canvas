@@ -24,7 +24,7 @@
         v-if = 'isPopupOpen'  
         @close = 'togglePopup'
         :optionsArray = 'parametersArray'
-        :parametresArray = 'currentObject'
+        :parametres = 'currentObject'
     >
     </PopupWindow>
 </template>
@@ -43,7 +43,7 @@ import MySelector from '@/components/UI/MySelector.vue';
         return{
             currentObject:{},
             isPopupOpen:false,
-            selectValue:'as',
+            selectValue:'',
             objTypes:[...this.dataFromJSON.ObjectsTypesArr],
             objArr:[...this.dataFromJSON.ObjectsArray],
             parametersArray: ['ID','TTL','Capacity','Modbus_ID'],

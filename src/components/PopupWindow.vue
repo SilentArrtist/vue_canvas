@@ -6,11 +6,13 @@
                         <MySelector
                         :className="'popupSelector'" 
                         :optionsArray = "optionsArray"
+                        v-model = "value"
                         />
-                        <button>ADD</button>
+                        <button @click="addParam(value)">ADD</button>
                      </div>
                     <ParametresList
-                        :parametresArray = "parametresArray"
+                        :parametresArray = 'parametresArray'
+                        @deleteElem='removeParam'
                     />
                     <div @click="closePopUp" id = 'pop_up_close' class="pop_up_close">✖</div>
                 </div>
@@ -30,14 +32,32 @@ import MySelector from '@/components/UI/MySelector.vue';
             type:Array,
             required:true,
            },
-           parametresArray:{
+           parametres:{
             type:Array,
             required:true,
            }
         },
+        data(){
+            return{
+                parametresArray:[],
+                value:'',
+            }
+        },
         methods:{
             closePopUp(){
-                 this.$emit('close')
+                this.$emit('close')
+            },
+            addParam(param){
+                const obj = JSON.parse(JSON.stringify(this.parametres));
+                // console.log(obj[0].parameters)
+                this.parametresArray.push({
+                        "ParamID":Math.random()*5,
+                        "ParamName":this.value,
+                        "ParamValue":obj[0].parameters[param],
+                });
+            },
+            removeParam(param){
+                this.parametresArray = this.parametresArray.filter(p=>p.ParamID!==param.ParamID)
             }
         },
     }
@@ -64,7 +84,6 @@ import MySelector from '@/components/UI/MySelector.vue';
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
     margin: auto;
     width: 800px;
     height: 60vh;
