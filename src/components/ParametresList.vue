@@ -7,6 +7,7 @@
             @dragend="(e)=>{dragEndHandler(e)}"
             @dragover="(e)=>{dragOverHandler(e)}"
             @drop="(e)=>{dropHandler(e,parameter)}"
+            @load="(e)=>{console.log(e)}"
             :draggable="true"
             :key='parameter.ParamID'
             :param = 'parameter'
@@ -32,11 +33,11 @@ import ParametersItem from '@/components/ParametersItem.vue';
                 this.currentParam = parameter;
             },
             dragEndHandler(e){
-                e.target.style.background = "#15acac";
+                e.target.style.border = "none";
             },
             dragOverHandler(e,parameter){
                 e.preventDefault();
-                e.target.style.background = "#126d6d";
+                e.target.style.border = "1px solid violet";
 
             },
             dropHandler(e,parameter){
@@ -47,7 +48,7 @@ import ParametersItem from '@/components/ParametersItem.vue';
                     if(this.parametresArray[item].ParamID === parameter.ParamID)i2=item;
                 }
                 [this.parametresArray[i1],this.parametresArray[i2]]=[this.parametresArray[i2],this.parametresArray[i1]]
-                e.target.style.background = "#15acac";
+                e.target.style.border = "none";
             },
         }
     }
@@ -60,16 +61,5 @@ import ParametersItem from '@/components/ParametersItem.vue';
     width: 100%;
     align-items: center;
 }
-.parameterBlock{
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
-    border: 2px solid teal;
-    background-color: #15acac;
-    margin-top: 10px;
-    padding: 5px 10px;
-    font-weight: bold;
-    font-size: 20px;
-}
+
 </style>
