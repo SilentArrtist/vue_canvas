@@ -1,5 +1,5 @@
 <template>
-    <select :value ='modelValue' @change="updateValue" class="className">
+    <select :value ='modelValue' @change="updateValue" class="custom_selector">
             <option selected disabled>----</option>
             <option 
             class="selector_option"
@@ -33,5 +33,9 @@
 </script>
 
 <style scoped>
-
+.custom_selector{
+    border-radius: 7px;
+    padding: 5px;
+    
+}
 </style>

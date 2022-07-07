@@ -8,7 +8,7 @@
                         :optionsArray = "optionsArray"
                         v-model = "value"
                         />
-                        <button @click="addParam(value)">ADD</button>
+                        <div class="btn" @click="addParam(value)">+</div>
                      </div>
                     <ParametresList
                         :parametresArray = 'parametresArray'
@@ -111,6 +111,12 @@ import MySelector from '@/components/UI/MySelector.vue';
 }
 #popup_selector{
     margin-bottom: 15px;
+}
+.btn{
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 31px;
+    font-weight: bold;
 }
 
 

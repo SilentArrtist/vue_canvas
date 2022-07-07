@@ -7,10 +7,10 @@
             :optionsArray = "objTypes"
             v-model = "selectValue"
             />
-            <button @click="addNewObject(selectValue)">Add</button>
+            <div class="btn" @click="addNewObject(selectValue)">+</div>
         </div>
         <div class="objects">
-            <button
+            <button class="obj_btn"
             @click="openPopUp(obj.type,obj.id)"
             v-for="obj in objArr"
             :key ='obj.key'
@@ -51,6 +51,7 @@ import MySelector from '@/components/UI/MySelector.vue';
     },
     methods:{
         addNewObject(selectedValue){
+
             this.objArr.push({
                 key:Math.random(),
                 type:selectedValue,
@@ -86,8 +87,22 @@ import MySelector from '@/components/UI/MySelector.vue';
     margin-top: 450px;
 }
 .selector_block{
+    display: flex;
     padding: 5px;
-    border: 1px solid rgb(11, 143, 143);
+    margin-bottom: 15px;
+}
+.obj_btn{
+    padding: 7px;
+    background: none;
+    border: 1px solid rgb(88, 88, 88);
+    border-radius: 7px;
+    margin-left: 10px;
+}
+.btn{
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 31px;
+    font-weight: bold;
 }
 .objects{
     display: flex;
