@@ -1,14 +1,14 @@
 <template>
     <div class="parametresList">
             <ParametersItem
-            v-for="(parameter,index) in parametresArray" 
+            v-for="(parameter) in parametresArray" 
             @dragstart="(e)=>{dragStartHandler(e,parameter)}"
             @dragleave="(e)=>{dragEndHandler(e)}"
             @dragend="(e)=>{dragEndHandler(e)}"
             @dragover="(e)=>{dragOverHandler(e)}"
             @drop="(e)=>{dropHandler(e,parameter)}"
             :draggable="true"
-            :key='index+Math.random()*10'
+            :key='parameter.ParamID'
             :param = 'parameter'
             :remove = 'removeParam'
             />

@@ -51,7 +51,6 @@ import MySelector from '@/components/UI/MySelector.vue';
     },
     methods:{
         addNewObject(selectedValue){
-            console.log(selectedValue);
             this.objArr.push({
                 key:Math.random(),
                 type:selectedValue,
