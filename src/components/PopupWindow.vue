@@ -12,7 +12,7 @@
                      </div>
                     <ParametresList
                         :parametresArray = 'parametresArray'
-                        @deleteElem='removeParam'
+                        :removeParam='removeParam'
                     />
                     <div @click="closePopUp" id = 'pop_up_close' class="pop_up_close">✖</div>
                 </div>

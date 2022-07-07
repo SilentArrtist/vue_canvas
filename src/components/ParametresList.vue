@@ -2,9 +2,15 @@
     <div class="parametresList">
             <ParametersItem
             v-for="(parameter,index) in parametresArray" 
+            @dragstart="(e)=>{dragStartHandler(e,parameter)}"
+            @dragleave="(e)=>{dragEndHandler(e)}"
+            @dragend="(e)=>{dragEndHandler(e)}"
+            @dragover="(e)=>{dragOverHandler(e)}"
+            @drop="(e)=>{dropHandler(e,parameter)}"
+            :draggable="true"
             :key='index+Math.random()*10'
             :param = 'parameter'
-            @remove = "removeParam"
+            :remove = 'removeParam'
             />
     </div>
 </template>
@@ -15,21 +21,34 @@ import ParametersItem from '@/components/ParametersItem.vue';
         components:{
             ParametersItem,
         },
-        props:{
-           parametresArray:{
-            type:Array,
-            required:true,
-           },
-        },
+        props:['parametresArray','removeParam'],
         data(){
             return{
-
+                currentParam:null,
             }
         },
         methods:{
-            removeParam(param){
-                this.$emit('deleteElem',param)
-            }
+            dragStartHandler(e,parameter){
+                this.currentParam = parameter;
+            },
+            dragEndHandler(e){
+                e.target.style.background = "#15acac";
+            },
+            dragOverHandler(e,parameter){
+                e.preventDefault();
+                e.target.style.background = "#126d6d";
+
+            },
+            dropHandler(e,parameter){
+                e.preventDefault();
+                let i1,i2;
+                for(let item in this.parametresArray){
+                    if(this.parametresArray[item].ParamID === this.currentParam.ParamID)i1=item;
+                    if(this.parametresArray[item].ParamID === parameter.ParamID)i2=item;
+                }
+                [this.parametresArray[i1],this.parametresArray[i2]]=[this.parametresArray[i2],this.parametresArray[i1]]
+                e.target.style.background = "#15acac";
+            },
         }
     }
 </script>
@@ -47,7 +66,7 @@ import ParametersItem from '@/components/ParametersItem.vue';
     justify-content: space-between;
     align-items: center;
     border: 2px solid teal;
-    background-color: rgb(21, 172, 172);
+    background-color: #15acac;
     margin-top: 10px;
     padding: 5px 10px;
     font-weight: bold;
