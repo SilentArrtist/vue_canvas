@@ -18,6 +18,7 @@
                     <ParametresList
                         :parametresArray = 'parametresArray'
                         :removeParam='removeParam'
+                        :type = 'type'
                     />
                     <div @click="closePopUp" id = 'pop_up_close' class="pop_up_close">✖</div>
                 </div>
@@ -29,6 +30,7 @@
 import ParametresList from '@/components/ParametresList.vue';
 import MySelector from '@/components/UI/MySelector.vue';
     export default {
+
         components:{
             ParametresList,MySelector,
         },
@@ -45,7 +47,7 @@ import MySelector from '@/components/UI/MySelector.vue';
         data(){
             return{
                 parametresArray:[],
-                typesArray:['D','prBar'],
+                typesArray:['Data','Progress Bar'],
                 value:'',
                 type:'',
             }

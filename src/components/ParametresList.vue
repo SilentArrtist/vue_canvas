@@ -20,13 +20,15 @@
 <script>
 import ParametersItem from '@/components/ParametersItem.vue';
     export default {
+        
         components:{
             ParametersItem,
         },
-        props:['parametresArray','removeParam'],
+        props:['parametresArray','type','removeParam'],
         data(){
             return{
                 currentParam:null,
+                currType:this.type,
             }
         },
         methods:{

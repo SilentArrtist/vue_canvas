@@ -33,6 +33,7 @@
 import PopupWindow from '@/components/PopupWindow.vue';
 import MySelector from '@/components/UI/MySelector.vue';
     export default {
+
     props:{
         dataFromJSON:Object,
     },
