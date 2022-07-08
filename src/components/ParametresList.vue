@@ -11,6 +11,7 @@
             :draggable="true"
             :key='parameter.ParamID'
             :param = 'parameter'
+            :type = 'type'
             :remove = 'removeParam'
             />
     </div>

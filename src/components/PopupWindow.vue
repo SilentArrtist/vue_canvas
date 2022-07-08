@@ -8,6 +8,11 @@
                         :optionsArray = "optionsArray"
                         v-model = "value"
                         />
+                        <MySelector
+                        :className="'popupSelector'" 
+                        :optionsArray = "typesArray"
+                        v-model = "type"
+                        />
                         <div class="btn" @click="addParam(value)">+</div>
                      </div>
                     <ParametresList
@@ -40,7 +45,9 @@ import MySelector from '@/components/UI/MySelector.vue';
         data(){
             return{
                 parametresArray:[],
+                typesArray:['D','prBar'],
                 value:'',
+                type:'',
             }
         },
         methods:{
