@@ -71,7 +71,7 @@
 }
 .parameterBlock{
     display: flex;
-    width: 100%;
+    width: 95%;
     border: 2px solid teal;
     background-color: #15acac;
     margin-top: 10px;

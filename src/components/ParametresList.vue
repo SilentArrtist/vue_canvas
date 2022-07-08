@@ -63,6 +63,7 @@ import ParametersItem from '@/components/ParametersItem.vue';
     flex-direction: column;
     width: 100%;
     align-items: center;
+    overflow:auto;
 }
 
 </style>
