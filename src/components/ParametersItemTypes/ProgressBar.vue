@@ -6,7 +6,7 @@
             <input v-model="pbMaxValue" type="text" name="" id="maxValue">
         </div>
         <div class="pbContainer">
-            <div>Value:{{persentage}}</div>
+            <div>Value:{{Value}}</div>
             <div class="loadingBar">
                 <div class="percentage" :style="{'width':percentage+'%'}"></div>
             </div>
@@ -21,6 +21,11 @@
 <script>
     
     export default {
+        computed: {
+            Value: function () {
+                return this.persentage;
+            }
+        },
         created() {
             this.percentage = parseInt(this.param.ParamValue)/parseInt(this.pbMaxValue)*100
         },

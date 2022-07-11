@@ -20,7 +20,6 @@
 <script>
 import ParametersItem from '@/components/ParametersItem.vue';
     export default {
-        
         components:{
             ParametersItem,
         },

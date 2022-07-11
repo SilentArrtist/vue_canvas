@@ -6,7 +6,15 @@ export default{
             const DataObjectsTypesArr = data.ObjectsTypesArr;
             const DataObjectsArray = data.ObjectsArray;
             ctx.commit('updateObjectsTypesArr',DataObjectsTypesArr);
-            ctx.commit('updateObjectsArray',DataObjectsArray);
+            setInterval(() => {
+                for(let item of DataObjectsArray){
+                    item.parameters.Capacity += Math.random()>0.5?1:-1;
+                    item.parameters.TTL += Math.random()>0.5?1:-1;
+                }
+                ctx.commit('updateObjectsArray',DataObjectsArray);
+            }, 2000);
+            
+            
         }
     },
     mutations:{
@@ -28,7 +36,7 @@ export default{
         types(state){
             return state.ObjectsTypesArr;
         },
-        objects(state){
+        objects(state){ 
             return state.ObjectsArray;
         },  
     },

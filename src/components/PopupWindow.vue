@@ -31,13 +31,19 @@ import ParametresList from '@/components/ParametresList.vue';
 import MySelector from '@/components/UI/MySelector.vue';
 import { mapGetters } from 'vuex';
     export default {
-        computed:
-            mapGetters(['objects']),
-
+        computed:{
+            ...mapGetters(['objects']),
+        },
         components:{
             ParametresList,MySelector,
         },
         props:['optionsArray','parametres'],
+        watch:{
+            objects(newValue){
+                console.log(this.objects);
+                console.log(newValue);
+            }
+        },
         data(){
             return{
                 parametresArray:[],
@@ -51,17 +57,13 @@ import { mapGetters } from 'vuex';
                 this.$emit('close')
             },
             addParam(param){
-                let obj;
-                for(let item of this.objects){
-                    if((item.type===this.parametres.type)&&(item.id===this.parametres.id)){
-                        obj = item;
-                    }
-                }
-                this.parametresArray.push({
-                        "ParamID":Math.random()*5,
-                        "ParamName":this.value,
-                        "ParamValue":obj.parameters[param],
-                });
+                const index = this.objects.findIndex(item=>((item.type===this.parametres.type)&&(item.id===this.parametres.id)))
+                const newObj = {
+                    "ParamID":Math.random()*5,
+                    "ParamName":param,
+                    "ParamValue":this.objects[index].parameters[param],
+                };
+                vm.$set(this.parametresArray,this.parametresArray.length,newObj);
             },
             removeParam(param){
                 this.parametresArray = this.parametresArray.filter(p=>p.ParamID!==param.ParamID)

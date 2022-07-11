@@ -13,17 +13,7 @@
 
 <script>
     export default {
-        props:{
-           className:{
-            type:String,
-            required:true,
-           },
-           optionsArray:{
-            type:Array,
-            required:true,
-           },
-           modelValue:String,
-        },
+        props:['className','optionsArray','modelValue'],
         methods:{
             updateValue(event){
                 this.$emit("update:modelValue",event.target.value)
