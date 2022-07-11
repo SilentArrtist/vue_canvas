@@ -58,12 +58,11 @@ import { mapGetters } from 'vuex';
             },
             addParam(param){
                 const index = this.objects.findIndex(item=>((item.type===this.parametres.type)&&(item.id===this.parametres.id)))
-                const newObj = {
-                    "ParamID":Math.random()*5,
-                    "ParamName":param,
-                    "ParamValue":this.objects[index].parameters[param],
-                };
-                vm.$set(this.parametresArray,this.parametresArray.length,newObj);
+                this.parametresArray.push({
+                        "ParamID":Math.random()*5,
+                        "ParamName":param,
+                        "ParamValue":this.objects[index].parameters[param],
+                });
             },
             removeParam(param){
                 this.parametresArray = this.parametresArray.filter(p=>p.ParamID!==param.ParamID)
