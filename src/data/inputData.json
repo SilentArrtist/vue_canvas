@@ -32,7 +32,7 @@
             "parameters":{
                 "ID":2,
                 "TTL":24,
-                "Capacity":45,
+                "Capacity":55,
                 "Modbus_ID":15
             }
         }

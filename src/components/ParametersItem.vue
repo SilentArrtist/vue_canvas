@@ -12,8 +12,6 @@
             <ProgressBar
             :param = 'param'
             :remove = 'remove'
-            :pbMaxValue = 'pbMaxValue'
-            :pbCurrentValue = 'pbCurrentValue'
             :toggleSettings = 'toggleSettings'
             />
         </div>
@@ -46,8 +44,6 @@
          data(){
             return{
                 dataMaxValue:this.param.ParamValue,
-                pbMaxValue:100,
-                pbCurrentValue:'',
                 isSettingsOpen:false,
                 bgColor:'',
                 textColor:'', 
