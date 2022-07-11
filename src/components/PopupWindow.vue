@@ -29,21 +29,15 @@
 <script>
 import ParametresList from '@/components/ParametresList.vue';
 import MySelector from '@/components/UI/MySelector.vue';
+import { mapGetters } from 'vuex';
     export default {
+        computed:
+            mapGetters(['objects']),
 
         components:{
             ParametresList,MySelector,
         },
-        props:{
-            optionsArray:{
-            type:Array,
-            required:true,
-           },
-           parametres:{
-            type:Array,
-            required:true,
-           }
-        },
+        props:['optionsArray','parametres'],
         data(){
             return{
                 parametresArray:[],
@@ -57,17 +51,21 @@ import MySelector from '@/components/UI/MySelector.vue';
                 this.$emit('close')
             },
             addParam(param){
-                const obj = JSON.parse(JSON.stringify(this.parametres));
-                // console.log(obj[0].parameters)
+                let obj;
+                for(let item of this.objects){
+                    if((item.type===this.parametres.type)&&(item.id===this.parametres.id)){
+                        obj = item;
+                    }
+                }
                 this.parametresArray.push({
                         "ParamID":Math.random()*5,
                         "ParamName":this.value,
-                        "ParamValue":obj[0].parameters[param],
+                        "ParamValue":obj.parameters[param],
                 });
             },
             removeParam(param){
                 this.parametresArray = this.parametresArray.filter(p=>p.ParamID!==param.ParamID)
-            }
+            },
         },
     }
 </script>

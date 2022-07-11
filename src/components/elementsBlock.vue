@@ -4,7 +4,7 @@
         <div class="selector_block">
             <MySelector 
             :className="'mainSelector'" 
-            :optionsArray = "objTypes"
+            :optionsArray = "types"
             v-model = "selectValue"
             />
             <div class="btn" @click="addNewObject(selectValue)">+</div>
@@ -12,7 +12,7 @@
         <div class="objects">
             <button class="obj_btn"
             @click="openPopUp(obj.type,obj.id)"
-            v-for="obj in objArr"
+            v-for="obj in objects"
             :key ='obj.key'
             >
             {{obj.type}}№{{obj.id}}
@@ -32,42 +32,39 @@
 <script>
 import PopupWindow from '@/components/PopupWindow.vue';
 import MySelector from '@/components/UI/MySelector.vue';
+import { mapGetters,mapMutations } from 'vuex';
     export default {
-
-    props:{
-        dataFromJSON:Object,
-    },
+    computed:mapGetters(['types','objects']),
     components:{
         PopupWindow,MySelector,
     },
     data(){
         return{
-            currentObject:{},
+            currentObject:{type:'',id:''},
             isPopupOpen:false,
             selectValue:'',
-            objTypes:[...this.dataFromJSON.ObjectsTypesArr],
-            objArr:[...this.dataFromJSON.ObjectsArray],
             parametersArray: ['ID','TTL','Capacity','Modbus_ID'],
         }
     },
     methods:{
+        ...mapMutations['addObject'],
         addNewObject(selectedValue){
-
-            this.objArr.push({
+            this.addObject({
                 key:Math.random(),
                 type:selectedValue,
-                id:this.objArr.length+1,
+                id:this.objects.length+1,
                 parameters:{
                     "ID":Math.ceil(Math.random()*25),
                     "TTL":Math.ceil(Math.random()*14),
                     "Capacity":Math.ceil(Math.random()*100),
                     "Modbus_ID":Math.ceil(Math.random()*50)
                 }
-            })
+             })
               
         },
         openPopUp(type,id){
-            this.currentObject = this.objArr.filter(i=>((i.type==type)&&(i.id==id)))
+            this.currentObject.type = type;
+            this.currentObject.id = id;
             this.togglePopup();
         },
         togglePopup(){
